@@ -62,22 +62,13 @@ bool read_row(FILE *input, FILE *output, const Column *columns, unsigned int col
             col++;
         }
 
-// #define NO_MILENIAL
         // Print value
         else if (isprint(c)) {
             if (is_a_selected_column(col, columns, columns_length)) {
                 switch (col) {
                     case COLUMN_TIME:
                         if (date_index < 4) {
-#ifdef NO_MILENIAL
-                            if (c == '1') {
-                                while ((c = fgetc(input)) != DELIM_ROW);
-                            } else {
-#endif // NO_MILENIAL
-                                putc(c, output);
-#ifdef NO_MILENIAL
-                            }
-#endif
+                            putc(c, output);
                         }
                         date_index++;
                         break;
